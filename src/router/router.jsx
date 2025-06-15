@@ -8,6 +8,8 @@ import CourseDetails from "../pages/CourseDetails";
 import Faq from "../pages/Faqs";
 import AddCourse from "../components/AddCourse";
 import AboutUs from "../components/Aboutus";
+import PrivateRoutes from "../routes/PrivateRoutes";
+import ManageCourses from "../pages/ManageCourses";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/addCourse',
-        element:<AddCourse></AddCourse>
+        element:<PrivateRoutes><AddCourse></AddCourse></PrivateRoutes>
       },
       {
         path:'/faq',
@@ -44,7 +46,15 @@ const router = createBrowserRouter([
       {
         path:'/register',
         element:<Register></Register>
-      }
+      },
+      {
+        path:'/manageCourse',
+        element:<PrivateRoutes><ManageCourses></ManageCourses></PrivateRoutes>
+      },
+      // {
+      //   path:'/editCourse',
+      //   element:
+      // }
       
     ]
   },

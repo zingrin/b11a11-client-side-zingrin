@@ -17,6 +17,7 @@ const Navbar = () => {
 
   const links = <>
     <li><NavLink to="/">Home</NavLink></li>
+    <li><NavLink to="/about">About Us</NavLink></li>
 
     {user && <>
       <li><NavLink to="/my-enrollments">My Enrollment Course</NavLink></li>

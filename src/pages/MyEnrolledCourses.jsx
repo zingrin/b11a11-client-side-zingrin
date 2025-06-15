@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { AuthContexts } from "../contexts/AuthContexts";
 import { toast } from "react-toastify";
 
 const MyEnrolledCourses = () => {
   const { user } = useContext(AuthContexts);
+  const navigate = useNavigate();
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,9 +55,17 @@ const MyEnrolledCourses = () => {
 
   if (enrollments.length === 0) {
     return (
-      <p className="text-center text-gray-500 mt-10">
-        You haven’t enrolled in any courses yet.
-      </p>
+      <div className="text-center mt-10 space-y-4">
+        <p className="text-gray-500">
+          You haven’t enrolled in any courses yet.
+        </p>
+        <button
+          onClick={() => navigate("/")}
+          className="btn btn-primary"
+        >
+          Back Home
+        </button>
+      </div>
     );
   }
 
