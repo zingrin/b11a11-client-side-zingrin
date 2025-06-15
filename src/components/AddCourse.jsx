@@ -1,21 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContexts } from "../contexts/AuthContexts";
 import { toast } from "react-toastify";
 
 const AddCourse = () => {
   const { user } = useContext(AuthContexts);
   const [loading, setLoading] = useState(false);
-  const [courseOptions, setCourseOptions] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/courses")
-      .then((res) => res.json())
-      .then((data) => {
-        const titles = data.map((course) => course.title);
-        setCourseOptions(titles);
-      })
-      .catch((err) => console.error("Failed to fetch courses:", err));
-  }, []);
 
   const handleAddCourse = async (e) => {
     e.preventDefault();
@@ -24,13 +13,13 @@ const AddCourse = () => {
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
-    const price = parseFloat(form.price.value);
+    const duration = form.duration.value;
     const image = form.image.value;
 
     const newCourse = {
       title,
       description,
-      price,
+      duration,
       image,
       instructor: user?.displayName,
       instructor_email: user?.email,
@@ -66,34 +55,32 @@ const AddCourse = () => {
     <div className="max-w-xl mx-auto p-6 bg-base-200 rounded-xl shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Course</h2>
       <form onSubmit={handleAddCourse} className="space-y-4">
-
-        {/* Dropdown for existing course titles */}
-        <select name="title" className="select select-bordered w-full" required>
-          <option value="">Select a Course Title</option>
-          {courseOptions.map((title, index) => (
-            <option key={index} value={title}>{title}</option>
-          ))}
-        </select>
-
+        <input
+          type="text"
+          name="title"
+          placeholder="Course Title"
+          className="input input-bordered w-full"
+          required
+        />
         <textarea
           name="description"
-          placeholder="Course Description"
+          placeholder="Short Description"
           className="textarea textarea-bordered w-full"
-          
+          required
         />
         <input
-          type="number"
-          name="price"
-          placeholder="Price (USD)"
+          type="text"
+          name="duration"
+          placeholder="Duration (e.g. 6 weeks)"
           className="input input-bordered w-full"
-          
+          required
         />
         <input
           type="text"
           name="image"
           placeholder="Image URL"
           className="input input-bordered w-full"
-          
+          required
         />
         <button type="submit" className="btn btn-primary w-full" disabled={loading}>
           {loading ? "Submitting..." : "Add Course"}

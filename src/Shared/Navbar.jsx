@@ -3,10 +3,10 @@ import { NavLink } from 'react-router';
 import { AuthContexts } from '../contexts/AuthContexts';
 
 const Navbar = () => {
-  const { user, singOutUser } = useContext(AuthContexts);
+  const { user, signOutUser } = useContext(AuthContexts);
 
   const handleSingOut = () => {
-    singOutUser()
+    signOutUser()
       .then(() => {
         console.log('signed out user');
       })
@@ -19,7 +19,7 @@ const Navbar = () => {
     <li><NavLink to="/">Home</NavLink></li>
 
     {user && <>
-      <li><NavLink to="/my-enrollments">Enrollment Course</NavLink></li>
+      <li><NavLink to="/my-enrollments">My Enrollment Course</NavLink></li>
       <li><NavLink to="/addCourse">Add Course</NavLink></li>
     </>}
   </>;
