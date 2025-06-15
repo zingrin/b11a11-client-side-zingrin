@@ -11,6 +11,7 @@ import AboutUs from "../components/Aboutus";
 import PrivateRoutes from "../routes/PrivateRoutes";
 import ManageCourses from "../pages/ManageCourses";
 import EditCourse from "../components/EditCourse";
+import ContactUs from "../pages/ContactUs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path:'/about',
         element:<AboutUs></AboutUs>
+      },
+      {
+        path:'/contactUs',
+        element:<ContactUs></ContactUs>
       },
       {
         path:'/courses/:id',

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContexts } from "../contexts/AuthContexts";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const MyEnrolledCourses = () => {
   const { user } = useContext(AuthContexts);
@@ -25,24 +25,37 @@ const MyEnrolledCourses = () => {
     }
   }, [user]);
 
-  // Remove enrollment
+  // Remove enrollment with SweetAlert2 confirmation
   const handleRemove = (enrollmentId) => {
-    fetch(`http://localhost:3000/api/my-enrollments/${enrollmentId}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          toast.success("Enrollment removed!");
-          setEnrollments((prev) =>
-            prev.filter((enroll) => enroll._id !== enrollmentId)
-          );
-        }
-      })
-      .catch((err) => {
-        toast.error("Failed to remove");
-        console.error(err);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to remove this enrollment!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, remove it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/api/my-enrollments/${enrollmentId}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Removed!", "Enrollment has been removed.", "success");
+              setEnrollments((prev) =>
+                prev.filter((enroll) => enroll._id !== enrollmentId)
+              );
+            } else {
+              Swal.fire("Failed!", "Failed to remove enrollment.", "error");
+            }
+          })
+          .catch(() => {
+            Swal.fire("Failed!", "Failed to remove enrollment.", "error");
+          });
+      }
+    });
   };
 
   if (loading) {
@@ -59,10 +72,7 @@ const MyEnrolledCourses = () => {
         <p className="text-gray-500">
           You haven’t enrolled in any courses yet.
         </p>
-        <button
-          onClick={() => navigate("/")}
-          className="btn btn-primary"
-        >
+        <button onClick={() => navigate("/")} className="btn btn-primary">
           Back Home
         </button>
       </div>
@@ -71,9 +81,7 @@ const MyEnrolledCourses = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-center mb-8">
-        My Enrolled Courses
-      </h1>
+      <h1 className="text-3xl font-bold text-center mb-8">My Enrolled Courses</h1>
       <div className="overflow-x-auto">
         <table className="table w-full border">
           <thead className="bg-base-200">
