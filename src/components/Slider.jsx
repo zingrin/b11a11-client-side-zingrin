@@ -2,10 +2,9 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import image1 from "../../src/assets/image1.avif";
-import image2 from "../../src/assets/image2.avif";
-import image3 from "../../src/assets/image3.avif";
-
+import image1 from "/image1.avif";
+import image2 from "/image2.avif";
+import image3 from "/image3.avif";
 const slides = [
   {
     title: "Skills that drive you forward",

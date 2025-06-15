@@ -8,7 +8,7 @@ const MyEnrolledCourses = () => {
   const navigate = useNavigate();
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  console.log(enrollments);
   // Fetch enrolled courses
   useEffect(() => {
     if (user?.email) {
@@ -16,6 +16,7 @@ const MyEnrolledCourses = () => {
         .then((res) => res.json())
         .then((data) => {
           setEnrollments(data);
+          console.log(data)
           setLoading(false);
         })
         .catch((err) => {
@@ -26,7 +27,7 @@ const MyEnrolledCourses = () => {
   }, [user]);
 
   // Remove enrollment with SweetAlert2 confirmation
-  const handleRemove = (enrollmentId) => {
+  const handleRemove = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You want to remove this enrollment!",
@@ -37,7 +38,7 @@ const MyEnrolledCourses = () => {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/api/my-enrollments/${enrollmentId}`, {
+        fetch(`http://localhost:3000/api/my-enrollments/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -45,7 +46,7 @@ const MyEnrolledCourses = () => {
             if (data.deletedCount > 0) {
               Swal.fire("Removed!", "Enrollment has been removed.", "success");
               setEnrollments((prev) =>
-                prev.filter((enroll) => enroll._id !== enrollmentId)
+                prev.filter((enroll) => enroll._id !== id)
               );
             } else {
               Swal.fire("Failed!", "Failed to remove enrollment.", "error");
