@@ -9,7 +9,7 @@ const MyEnrolledCourses = () => {
   // 1. Fetch enrolled courses
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/api/enrollments?email=${user.email}`)
+      fetch(`http://localhost:3000/enrollments?email=${user?.email}`)
         .then(res => res.json())
         .then(data => {
           setEnrollments(data);
@@ -24,7 +24,7 @@ const MyEnrolledCourses = () => {
 
   // 2. Remove enrollment
   const handleRemove = (enrollmentId) => {
-    fetch(`http://localhost:3000/api/enrollments/${enrollmentId}`, {
+    fetch(`http://localhost:3000/api/my-enrollments/${enrollmentId}`, {
       method: "DELETE"
     })
       .then(res => res.json())

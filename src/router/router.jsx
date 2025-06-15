@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router";
 import MainLayouts from "../Layouts/MainLayouts";
 import Home from "../pages/Home";
-// import Courses from "../pages/Courses";
 import SignIn from "../pages/SignIn";
 import Register from "../pages/Register";
 import MyEnrolledCourses from "../pages/MyEnrolledCourses";
 import CourseDetails from "../pages/CourseDetails";
+import Faq from "../pages/Faqs";
+import AddCourse from "../components/AddCourse";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +23,14 @@ const router = createBrowserRouter([
       {
         path:'/my-enrollments',
         element:<MyEnrolledCourses></MyEnrolledCourses>
+      },
+      {
+        path:'/addCourse',
+        element:<AddCourse></AddCourse>
+      },
+      {
+        path:'/faq',
+        element:<Faq></Faq>
       },
       {
         path:'/signIn',
