@@ -7,7 +7,6 @@ const AddCourse = () => {
   const [loading, setLoading] = useState(false);
   const [courseOptions, setCourseOptions] = useState([]);
 
-  // Fetch available course titles on component mount
   useEffect(() => {
     fetch("http://localhost:3000/courses")
       .then((res) => res.json())
@@ -80,21 +79,21 @@ const AddCourse = () => {
           name="description"
           placeholder="Course Description"
           className="textarea textarea-bordered w-full"
-          required
+          
         />
         <input
           type="number"
           name="price"
           placeholder="Price (USD)"
           className="input input-bordered w-full"
-          required
+          
         />
         <input
           type="text"
           name="image"
           placeholder="Image URL"
           className="input input-bordered w-full"
-          required
+          
         />
         <button type="submit" className="btn btn-primary w-full" disabled={loading}>
           {loading ? "Submitting..." : "Add Course"}
