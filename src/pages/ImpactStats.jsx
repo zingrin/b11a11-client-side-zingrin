@@ -37,16 +37,16 @@ const ImpactStats = () => {
         ))}
       </div>
 
-      <div className="bg-white text-black mt-12 p-6 md:p-10 rounded-lg shadow-md max-w-3xl mx-auto">
-        <p className="text-lg font-medium mb-4">
-          We help organizations of all types and sizes prepare for the path ahead — wherever it leads.
-        </p>
-        <p className="text-sm mb-6">
-          Our curated collection of business and technical courses help companies, governments, and
-          nonprofits go further by placing learning at the center of their strategies.
-        </p>
-        <button className="btn btn-neutral">Learn more</button>
-      </div>
+     <div className="bg-white text-black mt-12 p-6 md:p-10 rounded-lg shadow-md max-w-3xl mx-auto">
+  <p className="text-lg font-medium mb-4">
+    Discover expertly designed courses that empower learners to build new skills and advance their careers.
+  </p>
+  <p className="text-sm mb-6">
+    From beginner to advanced, our comprehensive course catalog covers the latest business, technology, and creative topics — all crafted by industry experts.
+  </p>
+  <button className="btn btn-neutral">Browse Courses</button>
+</div>
+
     </section>
   );
 };
