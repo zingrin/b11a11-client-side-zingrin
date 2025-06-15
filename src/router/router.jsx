@@ -10,6 +10,7 @@ import AddCourse from "../components/AddCourse";
 import AboutUs from "../components/Aboutus";
 import PrivateRoutes from "../routes/PrivateRoutes";
 import ManageCourses from "../pages/ManageCourses";
+import EditCourse from "../components/EditCourse";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,10 +52,10 @@ const router = createBrowserRouter([
         path:'/manageCourse',
         element:<PrivateRoutes><ManageCourses></ManageCourses></PrivateRoutes>
       },
-      // {
-      //   path:'/editCourse',
-      //   element:
-      // }
+      {
+        path:'/editCourse/:id',
+        element:<PrivateRoutes><EditCourse></EditCourse></PrivateRoutes>
+      }
       
     ]
   },

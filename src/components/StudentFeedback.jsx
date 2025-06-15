@@ -23,31 +23,38 @@ const feedbacks = [
 
 const StudentFeedback = () => {
   return (
-    <section className="bg-base-200 py-16">
+    <section className="bg-base-200 py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">What Our Students Say</h2>
-        <p className="text-center text-gray-600 mb-10 max-w-xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-6 text-gray-100">
+          What Our Students Say
+        </h2>
+        <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-lg font-medium">
           Hear from learners who have taken our courses and made real progress in their careers.
         </p>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10">
           {feedbacks.map((fb, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="flex items-center gap-4 mb-3">
+            <div
+              key={idx}
+              className="bg-base-100 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="flex items-center gap-4 mb-5">
                 <img
                   src={fb.photo}
                   alt={fb.name}
-                  className="w-12 h-12 rounded-full object-cover border"
+                  className="w-16 h-16 rounded-full object-cover border-4 border-primary shadow"
                 />
                 <div>
-                  <p className="font-semibold text-gray-800">{fb.name}</p>
-                  <div className="flex text-yellow-400">
+                  <p className="text-2xl font-bold text-gray-100">{fb.name}</p>
+                  <div className="flex text-yellow-200 mt-1">
                     {[...Array(fb.rating)].map((_, i) => (
-                      <FaStar key={i} />
+                      <FaStar key={i} size={18} />
                     ))}
                   </div>
                 </div>
               </div>
-              <p className="text-gray-700 italic">"{fb.comment}"</p>
+              <p className="text-gray-100 text-base font-medium italic leading-relaxed">
+                "{fb.comment}"
+              </p>
             </div>
           ))}
         </div>

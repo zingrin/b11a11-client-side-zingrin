@@ -9,10 +9,14 @@ const ManageCourses = () => {
   const [myCourses, setMyCourses] = useState([]);
 
   useEffect(() => {
-    fetch(`https://localhost:3000/courses?email=${user?.email}`)
+    if (!user?.email) return;
+
+    fetch(`http://localhost:3000/courses?email=${user.email}`)
       .then(res => res.json())
-      .then(data => setMyCourses(data));
+      .then(data => setMyCourses(data))
+      .catch(err => console.error(err));
   }, [user?.email]);
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -24,7 +28,7 @@ const ManageCourses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://localhost:3000/courses/${id}`, {
+        fetch(`http://localhost:3000/courses/${id}`, {
           method: "DELETE",
         })
           .then(res => res.json())
@@ -33,6 +37,9 @@ const ManageCourses = () => {
               Swal.fire("Deleted!", "Your course has been deleted.", "success");
               setMyCourses(myCourses.filter(c => c._id !== id));
             }
+          })
+          .catch(err => {
+            Swal.fire("Error!", "Failed to delete course.", "error");
           });
       }
     });
@@ -52,6 +59,13 @@ const ManageCourses = () => {
             </tr>
           </thead>
           <tbody>
+            {myCourses.length === 0 && (
+              <tr>
+                <td colSpan="4" className="text-center py-4 text-gray-500">
+                  No courses added yet.
+                </td>
+              </tr>
+            )}
             {myCourses.map(course => (
               <tr key={course._id}>
                 <td>{course.title}</td>
@@ -72,11 +86,6 @@ const ManageCourses = () => {
                 </td>
               </tr>
             ))}
-            {myCourses.length === 0 && (
-              <tr>
-                <td colSpan="4" className="text-center py-4 text-gray-500">No courses added yet.</td>
-              </tr>
-            )}
           </tbody>
         </table>
       </div>

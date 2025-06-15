@@ -1,17 +1,26 @@
 import { useContext, useState } from "react";
 import { AuthContexts } from "../contexts/AuthContexts";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddCourse = () => {
   const { user } = useContext(AuthContexts);
   const [loading, setLoading] = useState(false);
+
+  const courseOptions = [
+    "Web Development",
+    "Data Science",
+    "Mobile App Development",
+    "UI/UX Design",
+    "Machine Learning",
+    "Cloud Computing",
+  ];
 
   const handleAddCourse = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     const form = e.target;
-    const title = form.title.value;
+    const title = form.title.value; 
     const description = form.description.value;
     const duration = form.duration.value;
     const image = form.image.value;
@@ -38,14 +47,28 @@ const AddCourse = () => {
       const data = await res.json();
 
       if (data.insertedId) {
-        toast.success("Course added successfully!");
+        Swal.fire({
+          icon: "success",
+          title: "Course Added",
+          text: "Course added successfully!",
+          timer: 2000,
+          showConfirmButton: false,
+        });
         form.reset();
       } else {
-        toast.error("Failed to add course.");
+        Swal.fire({
+          icon: "error",
+          title: "Failed",
+          text: "Failed to add course.",
+        });
       }
     } catch (error) {
       console.error("Error adding course:", error);
-      toast.error("Something went wrong.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong.",
+      });
     } finally {
       setLoading(false);
     }
@@ -55,13 +78,22 @@ const AddCourse = () => {
     <div className="max-w-xl mx-auto p-6 bg-base-200 rounded-xl shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Course</h2>
       <form onSubmit={handleAddCourse} className="space-y-4">
-        <input
-          type="text"
+        <select
           name="title"
-          placeholder="Course Title"
-          className="input input-bordered w-full"
+          className="select select-bordered w-full"
           required
-        />
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Select Course Title
+          </option>
+          {courseOptions.map((course, idx) => (
+            <option key={idx} value={course}>
+              {course}
+            </option>
+          ))}
+        </select>
+
         <textarea
           name="description"
           placeholder="Short Description"

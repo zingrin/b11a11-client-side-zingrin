@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Faqs = [
   {
@@ -36,23 +37,29 @@ const Faq = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-10 px-4">
-      <h2 className="text-3xl font-bold text-center mb-6">
+    <div className="max-w-4xl mx-auto my-20 px-4">
+      <h2 className="text-4xl font-bold text-center mb-8 text-gray-100">
         Frequently Asked Questions
       </h2>
-      <div className="bg-white rounded-xl shadow-lg divide-y divide-gray-200">
+      <div className="bg-base-200 rounded-xl shadow-lg divide-y divide-base-300">
         {Faqs.map((faq, index) => (
-          <div key={index} className="p-4">
+          <div key={index} className="p-6">
             <button
               onClick={() => toggle(index)}
-              className="flex justify-between items-center w-full font-semibold text-left text-lg text-gray-800"
+              className="flex justify-between items-center w-full text-left"
             >
-              {faq.question}
-              <span className="ml-2">{openIndex === index ? "▲" : "▼"}</span>
+              <span className="text-xl font-semibold text-gray-100 hover:text-primary transition-colors duration-200">
+                {faq.question}
+              </span>
+              <span className="ml-2 text-xl text-primary">
+                {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
+              </span>
             </button>
 
             {openIndex === index && (
-              <p className="mt-2 text-gray-800">{faq.answer}</p>
+              <p className="mt-4 text-gray-300 text-base font-medium leading-relaxed">
+                {faq.answer}
+              </p>
             )}
           </div>
         ))}
