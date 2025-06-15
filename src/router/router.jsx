@@ -7,6 +7,7 @@ import MyEnrolledCourses from "../pages/MyEnrolledCourses";
 import CourseDetails from "../pages/CourseDetails";
 import Faq from "../pages/Faqs";
 import AddCourse from "../components/AddCourse";
+import AboutUs from "../components/Aboutus";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         index:true,
         Component:Home
+      },
+      {
+        path:'/about',
+        element:<AboutUs></AboutUs>
       },
       {
         path:'/courses/:id',

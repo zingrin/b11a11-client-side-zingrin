@@ -17,7 +17,7 @@ const Footer = () => {
           <span className="footer-title">Explore</span>
           <Link to="/about" className="link link-hover">About Us</Link>
           <Link to="/courses" className="link link-hover">Courses</Link>
-          <Link to="/add-course" className="link link-hover">Add Course</Link>
+          <Link to="/addCourse" className="link link-hover">Add Course</Link>
         </div>
 
         {/* Column 3: Support + Social Icons */}

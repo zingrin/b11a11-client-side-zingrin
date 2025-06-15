@@ -1,10 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContexts } from "../contexts/AuthContexts";
 import { toast } from "react-toastify";
 
 const AddCourse = () => {
   const { user } = useContext(AuthContexts);
   const [loading, setLoading] = useState(false);
+  const [courseOptions, setCourseOptions] = useState([]);
+
+  // Fetch available course titles on component mount
+  useEffect(() => {
+    fetch("http://localhost:3000/courses")
+      .then((res) => res.json())
+      .then((data) => {
+        const titles = data.map((course) => course.title);
+        setCourseOptions(titles);
+      })
+      .catch((err) => console.error("Failed to fetch courses:", err));
+  }, []);
 
   const handleAddCourse = async (e) => {
     e.preventDefault();
@@ -55,13 +67,15 @@ const AddCourse = () => {
     <div className="max-w-xl mx-auto p-6 bg-base-200 rounded-xl shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Course</h2>
       <form onSubmit={handleAddCourse} className="space-y-4">
-        <input
-          type="text"
-          name="title"
-          placeholder="Course Title"
-          className="input input-bordered w-full"
-          required
-        />
+
+        {/* Dropdown for existing course titles */}
+        <select name="title" className="select select-bordered w-full" required>
+          <option value="">Select a Course Title</option>
+          {courseOptions.map((title, index) => (
+            <option key={index} value={title}>{title}</option>
+          ))}
+        </select>
+
         <textarea
           name="description"
           placeholder="Course Description"
