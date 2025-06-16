@@ -11,7 +11,7 @@ const Achievements = () => {
   return (
     <div className="bg-base-50 py-16">
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold mb-4 text-gray-100">Our Platform in Numbers</h2>
+        <h2 className="text-4xl font-bold mb-4 text-gray-700">Our Platform in Numbers</h2>
         <p className="text-gray-600 mb-12 text-lg max-w-2xl mx-auto">
           We're dedicated to empowering learners across the world. Here are some stats that show our journey so far.
         </p>
