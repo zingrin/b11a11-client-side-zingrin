@@ -15,7 +15,7 @@ const CourseDetails = () => {
   // 1. fetch course
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/courseDetails/${id}`)
+    fetch(`https://academix-server-side-inky.vercel.app/courseDetails/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCourse(data);
@@ -26,7 +26,7 @@ const CourseDetails = () => {
   // 2. check if user already enrolled
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/enrollments?email=${user?.email}`)
+      fetch(`https://academix-server-side-inky.vercel.app/enrollments?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
           const enrolledHere = data.find((en) => en.courseId === id);
@@ -46,7 +46,7 @@ const CourseDetails = () => {
         enrolledAt: new Date().toISOString(),
       };
 
-      fetch("http://localhost:3000/enroll", {
+      fetch("https://academix-server-side-inky.vercel.app/enroll", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(enrollmentData),
@@ -75,7 +75,7 @@ const CourseDetails = () => {
   };
   const handleCancelEnrollment = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/courses/${id}`, {
+      const res = await fetch(`https://academix-server-side-inky.vercel.app/courses/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

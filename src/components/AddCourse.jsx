@@ -38,7 +38,7 @@ const AddCourse = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/courses", {
+      const res = await fetch("https://academix-server-side-inky.vercel.app/courses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -15,7 +15,7 @@ const EditCourse = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/courseDetails/${id}`)
+    fetch(`https://academix-server-side-inky.vercel.app/courseDetails/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setFormData({
@@ -48,7 +48,7 @@ const EditCourse = () => {
     e.preventDefault();
     setLoading(true);
 
-    fetch(`http://localhost:3000/courses/${id}`, {
+    fetch(`https://academix-server-side-inky.vercel.app/courses/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

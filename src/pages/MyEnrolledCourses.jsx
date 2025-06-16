@@ -13,7 +13,7 @@ const MyEnrolledCourses = () => {
   // Fetch enrolled courses
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/enrollments?email=${user.email}`)
+      fetch(`https://academix-server-side-inky.vercel.app/enrollments?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setEnrollments(data);
@@ -39,7 +39,7 @@ const MyEnrolledCourses = () => {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/api/my-enrollments/${id}`, {
+        fetch(`https://academix-server-side-inky.vercel.app/api/my-enrollments/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

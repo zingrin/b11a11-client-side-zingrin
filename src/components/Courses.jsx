@@ -7,7 +7,7 @@ const Courses = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/courses") 
+    fetch("https://academix-server-side-inky.vercel.app/api/courses") 
       .then(res => res.json())
       .then(data => {
         setCourses(data);

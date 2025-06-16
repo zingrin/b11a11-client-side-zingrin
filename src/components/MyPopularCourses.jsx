@@ -9,7 +9,7 @@ const MyPopularCourses = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/api/my-popular-courses?email=${user.email}`)
+      fetch(`https://academix-server-side-inky.vercel.app/api/my-popular-courses?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setCourses(data);

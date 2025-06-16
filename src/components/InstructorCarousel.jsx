@@ -7,7 +7,7 @@ const InstructorCarousel = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/instructors") 
+    fetch("https://academix-server-side-inky.vercel.app/api/instructors") 
       .then(res => res.json())
       .then(data => setInstructors(data));
   }, []);

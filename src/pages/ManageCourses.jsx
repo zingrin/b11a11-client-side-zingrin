@@ -12,7 +12,7 @@ const ManageCourses = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/courses?email=${user.email}`)
+    fetch(`https://academix-server-side-inky.vercel.app/courses?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyCourses(data))
       .catch((err) => console.error(err));
@@ -29,7 +29,7 @@ const ManageCourses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/courses/${id}`, {
+        fetch(`https://academix-server-side-inky.vercel.app/courses/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
