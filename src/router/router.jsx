@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/my-enrollments',
-        element:<MyEnrolledCourses></MyEnrolledCourses>
+        element:<PrivateRoutes><MyEnrolledCourses></MyEnrolledCourses></PrivateRoutes>
       },
       {
         path:'/addCourse',

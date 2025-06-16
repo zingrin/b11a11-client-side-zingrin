@@ -27,6 +27,7 @@ const AddCourse = () => {
 
     const newCourse = {
       title,
+      
       description,
       duration,
       image,

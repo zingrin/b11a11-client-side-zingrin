@@ -25,7 +25,7 @@ const Register = () => {
 
     setError('');
     createUser(email, password)
-      .then((result) => {
+      .then(() => {
         updateUserProfile(name, photo)
           .then(() => {
             console.log('User profile updated');
@@ -42,62 +42,130 @@ const Register = () => {
   return (
     <div className="hero min-h-screen bg-base-200 px-4">
       <div className="hero-content flex-col lg:flex-row-reverse gap-10">
+        {/* Left side animation & text */}
         <div className="text-center lg:text-left">
           <Lottie style={{ width: '300px' }} animationData={registerLottie} loop />
-          <h2 className="text-3xl font-semibold mt-4">Join <span className="text-primary">Acadex</span> Today!</h2>
-          <p className="text-gray-600 mt-2">Create an account to start exploring top-rated courses</p>
+          <h2 className="text-3xl font-semibold mt-4">
+            Join <span className="text-primary">Acadex</span> Today!
+          </h2>
+          <p className="text-gray-600 mt-2">
+            Create an account to start exploring top-rated courses
+          </p>
         </div>
 
-        <div className="card w-full max-w-md shadow-2xl bg-base-100">
-          <form onSubmit={handleRegister} className="card-body">
-            <h1 className="text-4xl font-bold text-center mb-4">Register</h1>
+        {/* Form Card */}
+        <div className="card w-full max-w-md shadow-2xl bg-base-100 rounded-lg">
+          <form
+            onSubmit={handleRegister}
+            className="card-body px-10 py-8 bg-base-100 rounded-lg"
+          >
+            <h1 className="text-4xl font-extrabold text-center mb-8 text-gray-400">Register</h1>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-medium">Name</span>
+            {/* Name Field */}
+            <div className="form-control mb-5">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1">
+                Name
               </label>
-              <input name="name" type="text" placeholder="Your full name" className="input input-bordered" required />
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your full name"
+                className="input input-bordered w-full rounded-md border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none text-lg"
+                required
+              />
             </div>
 
-            <div className="form-control mt-2">
-              <label className="label">
-                <span className="label-text font-medium">Photo URL</span>
+            {/* Photo URL Field */}
+            <div className="form-control mb-5">
+              <label htmlFor="photo" className="block text-sm font-medium text-gray-400 mb-1">
+                Photo URL
               </label>
-              <input name="photo" type="text" placeholder="Link to your profile photo" className="input input-bordered" required />
+              <input
+                id="photo"
+                name="photo"
+                type="text"
+                placeholder="Link to your profile photo"
+                className="input input-bordered w-full rounded-md border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none text-lg"
+                required
+              />
             </div>
 
-            <div className="form-control mt-2">
-              <label className="label">
-                <span className="label-text font-medium">Email</span>
+            {/* Email Field */}
+            <div className="form-control mb-5">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1">
+                Email
               </label>
-              <input name="email" type="email" placeholder="Enter your email" className="input input-bordered" required />
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                className="input input-bordered w-full rounded-md border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none text-lg"
+                required
+              />
             </div>
 
-            <div className="form-control mt-2">
-              <label className="label">
-                <span className="label-text font-medium">Password</span>
+            {/* Password Field */}
+            <div className="form-control mb-5">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-400 mb-1">
+                Password
               </label>
-              <input name="password" type="password" placeholder="Create a password" className="input input-bordered" required />
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Create a password"
+                className="input input-bordered w-full rounded-md border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none text-lg"
+                required
+              />
             </div>
 
-            <div className="form-control mt-2">
-              <label className="label">
-                <span className="label-text font-medium">Confirm Password</span>
+            {/* Confirm Password Field */}
+            <div className="form-control mb-5">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-400 mb-1"
+              >
+                Confirm Password
               </label>
-              <input name="confirmPassword" type="password" placeholder="Confirm your password" className="input input-bordered" required />
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm your password"
+                className="input input-bordered w-full rounded-md border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none text-lg"
+                required
+              />
             </div>
 
-            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+            {/* Error Message */}
+            {error && (
+              <p className="text-red-600 text-center text-sm mb-6 font-medium">{error}</p>
+            )}
 
+            {/* Register Button */}
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
+              <button
+                type="submit"
+                className="btn btn-primary w-full py-3 text-xl font-bold rounded-lg hover:scale-105 transition-transform duration-300"
+              >
+                Register
+              </button>
             </div>
 
-            <p className="text-center text-sm text-gray-500 mt-2">
-              Already have an account? <a href="/signIn" className="link">Sign In</a>
+            {/* Sign In Link */}
+            <p className="text-center text-sm text-gray-400 mt-8">
+              Already have an account?{' '}
+              <a href="/signIn" className="link link-primary font-semibold hover:underline">
+                Sign In
+              </a>
             </p>
 
-            <div className="divider">OR</div>
+            {/* Divider */}
+            <div className="divider mt-8 mb-4">OR</div>
+
+            {/* Social Login Buttons */}
             <SocialLogin />
           </form>
         </div>

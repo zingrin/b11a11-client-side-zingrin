@@ -8,8 +8,8 @@ const EditCourse = () => {
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
-    instructor: "",
+    detailedDescription: "",
+    instructorName: "",
     duration: "",
     image: "",
   });
@@ -20,8 +20,8 @@ const EditCourse = () => {
       .then((data) => {
         setFormData({
           title: data.title || "",
-          description: data.description || "",
-          instructor: data.instructor || "",
+          description: data.detailedDescription || "", 
+         instructorName: data.instructorName || "",       
           duration: data.duration || "",
           image: data.image || "",
         });
@@ -51,7 +51,13 @@ const EditCourse = () => {
     fetch(`http://localhost:3000/courses/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        title: formData.title,
+        detailedDescription: formData.detailedDescription,
+        instructorName: formData.instructorName,
+        duration: formData.duration,
+        image: formData.image,
+      }),
     })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to update course");
@@ -88,7 +94,7 @@ const EditCourse = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow mt-10">
+    <div className="max-w-3xl mx-auto p-6 bg-base-200 rounded shadow mt-10">
       <h2 className="text-2xl font-bold mb-6 text-center">Edit Course</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

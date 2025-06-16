@@ -3,15 +3,24 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const handlePasswordChange = (e) => {
+    let val = e.target.value;
+    if (val.length <= 6) {
+      val = val.toLowerCase();
+    } else {
+      val = val.slice(0, 6).toLowerCase() + val.slice(6);
+    }
+    setPassword(val);
+  };
 
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
-    const password = form.password.value;
 
     console.log('Sign in with:', { email, password });
-    // এখানে তোমার sign-in logic যোগ করো
   };
 
   return (
@@ -55,6 +64,8 @@ const SignIn = () => {
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
                   className="input input-bordered w-full pr-12"
+                  value={password}
+                  onChange={handlePasswordChange}
                   required
                 />
                 <span
