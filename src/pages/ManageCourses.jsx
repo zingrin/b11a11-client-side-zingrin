@@ -16,34 +16,38 @@ const ManageCourses = () => {
       .then(data => setMyCourses(data))
       .catch(err => console.error(err));
   }, [user?.email]);
-
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#e11d48",
-      cancelButtonColor: "#6b7280",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:3000/courses/${id}`, {
+const handleDelete = (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#e11d48",
+    cancelButtonColor: "#6b7280",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:3000/courses/${id}`, {
           method: "DELETE",
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
         })
-          .then(res => res.json())
-          .then(data => {
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your course has been deleted.", "success");
-              setMyCourses(myCourses.filter(c => c._id !== id));
-            }
-          })
-          .catch(err => {
-            Swal.fire("Error!", "Failed to delete course.", "error");
-          });
-      }
-    });
-  };
+        .then(res => res.json())
+        .then(data => {
+          if (data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Your course has been deleted.", "success");
+            setMyCourses(myCourses.filter(c => c._id !== id));
+          } else {
+            Swal.fire("Error!", "Course not found.", "error");
+          }
+        })
+        .catch(err => {
+          Swal.fire("Error!", "Failed to delete course.", "error");
+        });
+    }
+  });
+};
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
@@ -72,13 +76,13 @@ const ManageCourses = () => {
                 <td>{course.short_description}</td>
                 <td>{course.duration}</td>
                 <td className="flex gap-2">
-                  <Link to={`/edit-course/${course._id}`}>
+                  <Link to={`/editCourse/${course._id}`}>
                     <button className="btn btn-sm btn-info text-white">
                       <FaEdit />
                     </button>
                   </Link>
                   <button
-                    onClick={() => handleDelete(course._id)}
+                    onClick={() => handleDelete(c._id)}
                     className="btn btn-sm btn-error text-white"
                   >
                     <FaTrash />
