@@ -14,10 +14,12 @@ import EditCourse from "../components/EditCourse";
 import ContactUs from "../pages/ContactUs";
 import Courses from "../components/Courses";
 import ForgotPassword from "../pages/ForgotPassword";
+import NotFound from "../components/NotFound";
 const router = createBrowserRouter([
   {
     path: "/",
     element:<MainLayouts></MainLayouts>,
+    errorElement:<NotFound></NotFound>,
     children:[
       {
         index:true,
