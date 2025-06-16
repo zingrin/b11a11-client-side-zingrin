@@ -11,7 +11,7 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2000,
+  autoplaySpeed: 3000,
   pauseOnHover: true,
   arrows: false,
 };
@@ -31,17 +31,17 @@ const BannerSlider = () => {
   }
 
   return (
-    <div className="my-10 max-w-6xl mx-auto">
+    <div className="w-screen h-screen">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index}>
-            <div className="relative h-[350px] md:h-[450px]">
+            <div className="relative w-screen h-screen">
               <img
                 src={slide.image}
                 alt="Slide background"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-opacity-50 z-10" />
+              <div className="absolute inset-0  bg-opacity-40 z-10" />
               <motion.div
                 className="relative z-20 text-white text-center px-4 h-full flex flex-col items-center justify-center"
                 initial={{ opacity: 0, y: 30 }}

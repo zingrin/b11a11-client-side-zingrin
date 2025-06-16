@@ -21,15 +21,14 @@ const AuthProvider = ({ children }) => {
 
   // Providers
   const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
 
   // Create account
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // Sign in with email/password
-  const signIn = (email, password) => {
+  // Sign in with email/password (renamed to match usage)
+  const signInWithEmailPassword = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -43,10 +42,6 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // GitHub login
-  const signInWithGitHub = () => {
-    return signInWithPopup(auth, githubProvider);
-  };
 
   // Update user profile
   const updateUserProfile = (name, photoURL) => {
@@ -69,10 +64,9 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     createUser,
-    signIn,
+    signInWithEmailPassword,  
     signOutUser,
     signInWithGoogle,
-    signInWithGitHub,
     updateUserProfile
   };
 

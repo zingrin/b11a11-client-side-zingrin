@@ -29,13 +29,13 @@ const ContactUs = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 flex items-center justify-center px-4 py-10">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8 md:p-12">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">Contact Us</h2>
+      <div className="bg-base-100 rounded-2xl shadow-2xl w-full max-w-2xl p-8 md:p-12">
+        <h2 className="text-4xl font-bold text-center text-gray-300 mb-8">Contact Us</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Full Name</label>
+            <label className="block text-gray-300 font-medium mb-1">Full Name</label>
             <input
               type="text"
               name="name"
@@ -49,7 +49,7 @@ const ContactUs = () => {
 
           {/* Email */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Email Address</label>
+            <label className="block text-gray-300 font-medium mb-1">Email Address</label>
             <input
               type="email"
               name="email"
@@ -63,7 +63,7 @@ const ContactUs = () => {
 
           {/* Course */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Select a Course</label>
+            <label className="block text-gray-300 font-medium mb-1">Select a Course</label>
             <select
               name="course"
               className="select select-bordered w-full"
@@ -84,7 +84,7 @@ const ContactUs = () => {
 
           {/* Message */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Your Message</label>
+            <label className="block text-gray-300 font-medium mb-1">Your Message</label>
             <textarea
               name="message"
               rows="4"

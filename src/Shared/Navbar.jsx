@@ -38,13 +38,13 @@ const Navbar = () => {
         <NavLink to="/manageCourse">Manage Course</NavLink>
       </li>
       
-            {/* <li>
+            <li>
 
         <NavLink to="/about">About Us</NavLink>
       </li>
       <li>
         <NavLink to="/contactUs">Contact Us</NavLink>
-      </li> */}
+      </li>
     </>
   );
 

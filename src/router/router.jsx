@@ -13,6 +13,7 @@ import ManageCourses from "../pages/ManageCourses";
 import EditCourse from "../components/EditCourse";
 import ContactUs from "../pages/ContactUs";
 import Courses from "../components/Courses";
+import ForgotPassword from "../pages/ForgotPassword";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path:'/signIn',
         element:<SignIn></SignIn>
+      },
+      {
+        path:'/forgot-password',
+        element:<ForgotPassword></ForgotPassword>
       },
       {
         path:'/register',

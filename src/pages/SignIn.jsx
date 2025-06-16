@@ -1,26 +1,68 @@
-import React, { useState } from 'react';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import React, { useState, useContext } from "react";
+import { useLocation, useNavigate, Navigate } from "react-router";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { AuthContexts } from "../contexts/AuthContexts";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
+  const { user, signInWithEmailPassword, signInWithGoogle, signInWithGitHub } = useContext(AuthContexts);
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handlePasswordChange = (e) => {
-    let val = e.target.value;
-    if (val.length <= 6) {
-      val = val.toLowerCase();
-    } else {
-      val = val.slice(0, 6).toLowerCase() + val.slice(6);
-    }
-    setPassword(val);
-  };
+  const from = location.state?.from?.pathname || "/";
 
-  const handleSignIn = (e) => {
+  if (user) {
+    return <Navigate to={from} replace />;
+  }
+
+  const handleSignIn = async (e) => {
     e.preventDefault();
+    setError("");
     const form = e.target;
     const email = form.email.value;
+    const password = form.password.value;
 
-    console.log('Sign in with:', { email, password });
+    try {
+      await signInWithEmailPassword(email, password);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(err.message || "Login failed");
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: err.message || "Something went wrong!",
+      });
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithGoogle();
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(err.message || "Google login failed");
+      Swal.fire({
+        icon: "error",
+        title: "Google Login Failed",
+        text: err.message || "Something went wrong!",
+      });
+    }
+  };
+
+  const handleGitHubLogin = async () => {
+    try {
+      await signInWithGitHub();
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(err.message || "GitHub login failed");
+      Swal.fire({
+        icon: "error",
+        title: "GitHub Login Failed",
+        text: err.message || "Something went wrong!",
+      });
+    }
   };
 
   return (
@@ -54,18 +96,16 @@ const SignIn = () => {
             </div>
 
             {/* Password Field */}
-            <div className="form-control mt-2 mb-4">
+            <div className="form-control mt-2 mb-2">
               <label className="label mb-1 block">
                 <span className="label-text font-medium">Password</span>
               </label>
               <div className="relative">
                 <input
                   name="password"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className="input input-bordered w-full pr-12"
-                  value={password}
-                  onChange={handlePasswordChange}
                   required
                 />
                 <span
@@ -82,13 +122,25 @@ const SignIn = () => {
               </label>
             </div>
 
+            {/* Show error message */}
+            {error && <p className="text-red-600 text-center mb-2">{error}</p>}
+
             {/* Submit Button */}
-            <div className="form-control mt-6">
+            <div className="form-control mt-4">
               <button type="submit" className="btn btn-primary w-full">
                 Sign In
               </button>
             </div>
           </form>
+
+          {/* Social Login Buttons */}
+          <div className="divider">OR</div>
+          <div className="flex justify-center gap-4 mb-6 px-4">
+            <button onClick={handleGoogleLogin} className="btn btn-outline btn-primary flex-1">
+              Google Login
+            </button>
+           
+          </div>
         </div>
       </div>
     </div>

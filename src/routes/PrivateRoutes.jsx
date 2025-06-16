@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router";
 import { AuthContexts } from "../contexts/AuthContexts";
+import LoadingSpiner from "../components/LoadingSpiner";
 
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useContext(AuthContexts);
   const location = useLocation();
 
   if (loading) {
-    return <div className="text-center py-20">Loading...</div>;
+    return <LoadingSpiner></LoadingSpiner>
   }
 
   if (user) {
