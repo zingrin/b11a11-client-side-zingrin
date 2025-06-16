@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AuthContexts } from "../contexts/AuthContexts";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageCourses = () => {
   const { user } = useContext(AuthContexts);
@@ -48,6 +49,10 @@ const ManageCourses = () => {
   };
 
   return (
+<>
+    <Helmet>
+                <title>ManageCourse | Academix</title>
+              </Helmet>
     <div className="max-w-6xl mx-auto px-4 py-12 bg-base-100">
       <h2 className="text-3xl font-bold mb-6 text-center">Manage Your Courses</h2>
       <div className="overflow-x-auto">
@@ -93,6 +98,7 @@ const ManageCourses = () => {
         </table>
       </div>
     </div>
+    </>
   );
 };
 

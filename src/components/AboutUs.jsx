@@ -1,9 +1,14 @@
 import React from "react";
 import ImpactStats from "../pages/ImpactStats";
+import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
   return (
    <>
+   <Helmet>
+                   <title>About Us | Academix</title>
+                 </Helmet>
+       
     <div className="max-w-5xl mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold text-center mb-8">About Us</h2>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Faqs = [
@@ -37,34 +38,40 @@ const Faq = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-20 px-4">
-      <h2 className="text-4xl font-bold text-center mb-8 text-gray-600">
-        Frequently Asked Questions
-      </h2>
-      <div className="bg-base-200 rounded-xl shadow-lg divide-y divide-base-300">
-        {Faqs.map((faq, index) => (
-          <div key={index} className="p-6">
-            <button
-              onClick={() => toggle(index)}
-              className="flex justify-between items-center w-full text-left"
-            >
-              <span className="text-xl font-semibold text-gray-600 hover:text-primary transition-colors duration-200">
-                {faq.question}
-              </span>
-              <span className="ml-2 text-xl text-primary">
-                {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
-              </span>
-            </button>
+    <>
+      <Helmet>
+        <title>FAQ | Academix</title>
+      </Helmet>
 
-            {openIndex === index && (
-              <p className="mt-4 text-gray-600 text-base font-medium leading-relaxed">
-                {faq.answer}
-              </p>
-            )}
-          </div>
-        ))}
+      <div className="max-w-4xl mx-auto my-20 px-4">
+        <h2 className="text-4xl font-bold text-center mb-8 text-gray-600">
+          Frequently Asked Questions
+        </h2>
+        <div className="bg-base-200 rounded-xl shadow-lg divide-y divide-base-300">
+          {Faqs.map((faq, index) => (
+            <div key={index} className="p-6">
+              <button
+                onClick={() => toggle(index)}
+                className="flex justify-between items-center w-full text-left"
+              >
+                <span className="text-xl font-semibold text-gray-600 hover:text-primary transition-colors duration-200">
+                  {faq.question}
+                </span>
+                <span className="ml-2 text-xl text-primary">
+                  {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
+                </span>
+              </button>
+
+              {openIndex === index && (
+                <p className="mt-4 text-gray-600 text-base font-medium leading-relaxed">
+                  {faq.answer}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

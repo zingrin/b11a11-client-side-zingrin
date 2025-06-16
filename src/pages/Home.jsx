@@ -6,18 +6,25 @@ import Courses from "../components/Courses";
 import MyPopularCourses from "../components/MyPopularCourses";
 import InstructorCarousel from "../components/InstructorCarousel";
 import BannerSlider from "../components/Slider";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
-    <div>
-      <BannerSlider></BannerSlider>
-      <Courses></Courses>
-      <MyPopularCourses></MyPopularCourses>
-      <InstructorCarousel></InstructorCarousel>
-      <StudentFeedback></StudentFeedback>
-      <Achievements></Achievements>
-      <Faq></Faq>
-    </div>
+    <>
+      <Helmet>
+        <title>Home | Academix</title>
+      </Helmet>
+
+      <div>
+        <BannerSlider></BannerSlider>
+        <Courses></Courses>
+        <MyPopularCourses></MyPopularCourses>
+        <InstructorCarousel></InstructorCarousel>
+        <StudentFeedback></StudentFeedback>
+        <Achievements></Achievements>
+        <Faq></Faq>
+      </div>
+    </>
   );
 };
 

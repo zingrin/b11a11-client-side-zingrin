@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContexts } from "../contexts/AuthContexts";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyEnrolledCourses = () => {
   const { user } = useContext(AuthContexts);
@@ -81,6 +82,11 @@ const MyEnrolledCourses = () => {
   }
 
   return (
+    <>
+ <Helmet>
+        <title>MyEnrollments | Academix</title>
+      </Helmet>
+
     <div className="max-w-6xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold text-center mb-8">
         My Enrolled Courses
@@ -130,6 +136,8 @@ const MyEnrolledCourses = () => {
         </table>
       </div>
     </div>
+        </>
+
   );
 };
 

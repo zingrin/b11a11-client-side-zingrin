@@ -7,13 +7,17 @@ import AuthProvider, { AuthContexts } from "./contexts/AuthContexts.jsx";
 import { ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { HelmetProvider } from 'react-helmet-async';
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ToastContainer>
+    <HelmetProvider>
+<ToastContainer>
 
     </ToastContainer>
     <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
     </AuthProvider>
+    </HelmetProvider>
+    
   </StrictMode>
 );

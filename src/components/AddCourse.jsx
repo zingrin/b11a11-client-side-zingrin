@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContexts } from "../contexts/AuthContexts";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddCourse = () => {
   const { user } = useContext(AuthContexts);
@@ -76,6 +77,10 @@ const AddCourse = () => {
   };
 
   return (
+    <>
+    <Helmet>
+            <title>AddCourse | Academix</title>
+          </Helmet>
     <div className="max-w-xl mx-auto p-6 bg-base-200 rounded-xl shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Course</h2>
       <form onSubmit={handleAddCourse} className="space-y-4">
@@ -120,6 +125,7 @@ const AddCourse = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 

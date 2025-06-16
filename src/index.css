@@ -2,3 +2,6 @@
 @plugin "daisyui";
 @import url('./assets/react.svg');
 
+a.active{
+color: blue;
+}

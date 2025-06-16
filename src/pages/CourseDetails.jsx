@@ -71,34 +71,30 @@ const CourseDetails = () => {
           });
           console.error(err);
         });
-    } 
+    }
   };
   const handleCancelEnrollment = async () => {
-   try {
-     const res = await fetch(
-      `http://localhost:3000/courses/${id}`,
-      {
+    try {
+      const res = await fetch(`http://localhost:3000/courses/${id}`, {
         method: "DELETE",
+      });
+      const data = await res.json();
+      if (data) {
+        Swal.fire({
+          title: "Enrollment Cancel!",
+          icon: "success",
+          draggable: true,
+        });
       }
-    );
-    const data = await res.json();
-    if (data){
-       Swal.fire({
-      title: "Enrollment Cancel!",
-      icon: "success",
-      draggable: true,
-    });
+    } catch (error) {
+      if (error) {
+        Swal.fire({
+          title: " Cancel fail!",
+          icon: "error",
+          draggable: true,
+        });
+      }
     }
-    
-   } catch (error) {
-    if (error){
-       Swal.fire({
-      title: " Cancel fail!",
-      icon: "error",
-      draggable: true,
-    });
-    }
-   }
   };
 
   if (loading) return <div className="text-center py-10">Loading...</div>;
@@ -120,6 +116,20 @@ const CourseDetails = () => {
       <p>
         <strong>Duration:</strong> {course?.duration}
       </p>
+      <p>
+        <strong>InstructorEmail:</strong> {course?.instructorEmail}
+      </p>
+      <p>
+        <strong>Count:</strong> {course?.enrolledCount}
+      </p>
+
+      <p>
+        <strong>category:</strong> {course?.category}
+      </p>
+      <p>
+        <strong>level:</strong> {course?.level}
+      </p>
+
       <p>
         <strong>Seats Left:</strong> {seatsLeft}
       </p>
