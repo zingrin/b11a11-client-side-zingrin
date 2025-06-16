@@ -12,6 +12,7 @@ import PrivateRoutes from "../routes/PrivateRoutes";
 import ManageCourses from "../pages/ManageCourses";
 import EditCourse from "../components/EditCourse";
 import ContactUs from "../pages/ContactUs";
+import Courses from "../components/Courses";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path:'/contactUs',
         element:<ContactUs></ContactUs>
+      },
+      {
+        path:'/courses',
+        element:<Courses></Courses>
       },
       {
         path:'/courses/:id',
