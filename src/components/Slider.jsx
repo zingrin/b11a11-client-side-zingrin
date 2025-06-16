@@ -1,33 +1,8 @@
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import image1 from "/image1.avif";
-import image2 from "/image2.avif";
-import image3 from "/image3.avif";
-const slides = [
-  {
-    title: "Skills that drive you forward",
-    description:
-      "Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.",
-    button: "Plan for individuals",
-    image: image1,
-  },
-  {
-    title: "Empower your team",
-    description:
-      "Upskill your team with curated courses. Drive innovation and success in your organization.",
-    button: "Plan for teams",
-    image: image2,
-  },
-  {
-    title: "Learn without limits",
-    description:
-      "Access a world of knowledge. Learn anytime, anywhere, at your pace.",
-    button: "Explore learning paths",
-    image: image3,
-  },
-];
 
 const settings = {
   dots: true,
@@ -42,6 +17,19 @@ const settings = {
 };
 
 const BannerSlider = () => {
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    fetch("/slider.json")
+      .then((res) => res.json())
+      .then((data) => setSlides(data))
+      .catch((err) => console.error("Failed to load slides:", err));
+  }, []);
+
+  if (slides.length === 0) {
+    return <div className="text-center py-20">Loading...</div>;
+  }
+
   return (
     <div className="my-10 max-w-6xl mx-auto">
       <Slider {...settings}>
@@ -53,9 +41,7 @@ const BannerSlider = () => {
                 alt="Slide background"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-
-              <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
-
+              <div className="absolute inset-0 bg-opacity-50 z-10" />
               <motion.div
                 className="relative z-20 text-white text-center px-4 h-full flex flex-col items-center justify-center"
                 initial={{ opacity: 0, y: 30 }}

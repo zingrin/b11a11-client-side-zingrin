@@ -24,7 +24,7 @@ const Footer = () => {
         <div>
           <span className="footer-title">Support</span>
           <Link to="/enrolled" className="link link-hover">My Enrollments</Link>
-          <Link to="/contact" className="link link-hover">Contact</Link>
+          <Link to="/contactUs" className="link link-hover">Contact Us</Link>
           <Link to="/faq" className="link link-hover">FAQ</Link>
 
           <div className="flex gap-4 mt-4">

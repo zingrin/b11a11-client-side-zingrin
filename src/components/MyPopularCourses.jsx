@@ -1,22 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
+import { AuthContexts } from "../contexts/AuthContexts";
 
-const Courses = () => {
+const MyPopularCourses = () => {
+  const { user } = useContext(AuthContexts);
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/courses") 
-      .then(res => res.json())
-      .then(data => {
-        setCourses(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Failed to fetch courses:", err);
-        setLoading(false);
-      });
-  }, []);
+    if (user?.email) {
+      fetch(`http://localhost:3000/api/my-popular-courses?email=${user.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setCourses(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch popular courses:", err);
+          setLoading(false);
+        });
+    }
+  }, [user]);
 
   if (loading) {
     return (
@@ -24,17 +28,34 @@ const Courses = () => {
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
-
   }
-  console.log(courses);
+
+  if (courses.length === 0) {
+    return (
+      <div className="text-center mt-10 text-gray-500">
+        You haven’t enrolled in any popular courses yet.
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Explore Our Courses</h1>
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+        Your Popular Enrolled Courses
+      </h2>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {courses.map(course => (
-          <div key={course._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300">
-            <figure><img src={course.image} alt={course.title} className="h-48 w-full object-cover" /></figure>
+        {courses.map((course) => (
+          <div
+            key={course._id}
+            className="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300"
+          >
+            <figure>
+              <img
+                src={course.image}
+                alt={course.title}
+                className="h-48 w-full object-cover"
+              />
+            </figure>
             <div className="card-body">
               <h2 className="card-title">{course.title}</h2>
               <p className="text-sm text-gray-600">{course.shortDescription}</p>
@@ -60,4 +81,4 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+export default MyPopularCourses;

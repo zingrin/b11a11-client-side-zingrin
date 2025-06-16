@@ -16,7 +16,7 @@ const MyEnrolledCourses = () => {
         .then((res) => res.json())
         .then((data) => {
           setEnrollments(data);
-          console.log(data)
+          console.log(data);
           setLoading(false);
         })
         .catch((err) => {
@@ -82,7 +82,9 @@ const MyEnrolledCourses = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-center mb-8">My Enrolled Courses</h1>
+      <h1 className="text-3xl font-bold text-center mb-8">
+        My Enrolled Courses
+      </h1>
       <div className="overflow-x-auto">
         <table className="table w-full border">
           <thead className="bg-base-200">
@@ -107,9 +109,12 @@ const MyEnrolledCourses = () => {
                   <div>
                     <p className="font-semibold">{enroll.title}</p>
                     <p className="text-sm text-gray-500">{enroll.duration}</p>
+                    <p className="text-sm text-gray-500">
+                      {enroll.shortDescription}
+                    </p>
                   </div>
                 </td>
-                <td>{enroll.instructor}</td>
+                <td>{enroll.instructorName}</td>
                 <td>{new Date(enroll.enrolledAt).toLocaleDateString()}</td>
                 <td>
                   <button
