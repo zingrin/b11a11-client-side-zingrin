@@ -22,7 +22,6 @@ const Home = () => {
         <InstructorCarousel></InstructorCarousel>
         <StudentFeedback></StudentFeedback>
         <Achievements></Achievements>
-        <Faq></Faq>
       </div>
     </>
   );

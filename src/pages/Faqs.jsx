@@ -40,7 +40,7 @@ const Faq = () => {
   return (
     <>
       <Helmet>
-        <title>FAQ | Academix</title>
+        <title>Faq | Academix</title>
       </Helmet>
 
       <div className="max-w-4xl mx-auto my-20 px-4">
