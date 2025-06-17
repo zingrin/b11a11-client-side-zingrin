@@ -1,5 +1,6 @@
-import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { FaFacebook, FaLinkedin, FaTwitter, FaGraduationCap } from 'react-icons/fa';
+import { Link } from 'react-router'; 
+import MyPopularCourses from '../components/MyPopularCourses';
 
 const Footer = () => {
   return (
@@ -8,7 +9,9 @@ const Footer = () => {
 
         {/* Column 1: Logo & Slogan */}
         <div>
-          <h2 className="text-2xl font-bold text-primary">Academix</h2>
+          <h2 className="text-2xl font-bold text-primary flex items-center gap-2">
+            <FaGraduationCap className="text-3xl text-primary" /> Academix
+          </h2>
           <p className="mt-2">Empowering Learning, Everywhere</p>
         </div>
 
@@ -18,8 +21,8 @@ const Footer = () => {
           <Link to="/about" className="link link-hover">About Us</Link>
           <Link to="/courses" className="link link-hover">Courses</Link>
           <Link to="/addCourse" className="link link-hover">Add Course</Link>
+          <Link to="/myPopularCourse" className="link link-hover">My Popular Course</Link>
         </div>
-
         {/* Column 3: Support + Social Icons */}
         <div>
           <span className="footer-title">Support</span>

@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"; 
 import { AuthContexts } from "../contexts/AuthContexts";
 import ThemeToggle from "../components/ThemeToggle";
+import { FaGraduationCap } from "react-icons/fa"; 
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContexts);
@@ -45,7 +46,12 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <NavLink to="/" className="btn btn-ghost text-xl font-bold">Academix</NavLink>
+
+        {/* ✅ Logo and Text */}
+        <NavLink to="/" className="btn btn-ghost text-xl font-bold flex items-center gap-2">
+          <FaGraduationCap className="text-2xl text-primary" />
+          Academix
+        </NavLink>
       </div>
 
       <div className="navbar-center hidden lg:flex">
@@ -53,12 +59,9 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end space-x-2 relative">
-        <ThemeToggle></ThemeToggle>
+        <ThemeToggle />
         {user ? (
-          <div
-            className="relative"
-            
-          >
+          <div className="relative">
             <img
               src={user?.photoURL}
               onClick={() => setShowProfile(!showProfile)}
@@ -72,7 +75,6 @@ const Navbar = () => {
                 <div className="text-center">
                   <img
                     src={user?.photoURL}
-
                     alt="User"
                     className="w-12 h-12 mx-auto rounded-full mb-2 border"
                   />
@@ -87,7 +89,6 @@ const Navbar = () => {
                 </button>
               </div>
             )}
-
           </div>
         ) : (
           <>

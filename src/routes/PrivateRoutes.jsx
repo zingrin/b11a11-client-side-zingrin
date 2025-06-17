@@ -8,14 +8,14 @@ const PrivateRoutes = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <LoadingSpiner></LoadingSpiner>
+    return <LoadingSpiner />;
   }
 
   if (user) {
     return children;
   }
 
-  return <Navigate to="/login" state={{ from: location }} replace />;
+  return <Navigate to="/SignIn" state={{ from: location }} replace />;
 };
 
 export default PrivateRoutes;

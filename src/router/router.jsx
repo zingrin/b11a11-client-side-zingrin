@@ -15,6 +15,7 @@ import ContactUs from "../pages/ContactUs";
 import Courses from "../components/Courses";
 import ForgotPassword from "../pages/ForgotPassword";
 import NotFound from "../components/NotFound";
+import MyPopularCourses from "../components/MyPopularCourses";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path:'/editCourse/:id',
         element:<PrivateRoutes><EditCourse></EditCourse></PrivateRoutes>
+      },
+      {
+        path:'/myPopularCourse',
+        element:<MyPopularCourses></MyPopularCourses>
       }
       
     ]
