@@ -41,16 +41,23 @@ const BannerSlider = () => {
                 alt="Slide background"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{ imageRendering: "auto" }}
               />
+              {/* Overlay with black semi-transparent background */}
               <div className="absolute inset-0  bg-opacity-40 z-10" />
+
               <motion.div
                 className="relative z-20 text-white text-center px-4 h-full flex flex-col items-center justify-center"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-3xl md:text-5xl font-bold mb-4">{slide.title}</h2>
-                <p className="mb-6 max-w-2xl mx-auto text-sm md:text-lg">{slide.description}</p>
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                  {slide.title}
+                </h2>
+                <p className="mb-6 max-w-2xl mx-auto text-sm md:text-lg">
+                  {slide.description}
+                </p>
                 <button className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded font-semibold shadow-md">
                   {slide.button}
                 </button>
