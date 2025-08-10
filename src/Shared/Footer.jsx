@@ -1,48 +1,101 @@
-import { FaFacebook, FaLinkedin, FaTwitter, FaGraduationCap } from 'react-icons/fa';
-import { Link } from 'react-router'; 
-import MyPopularCourses from '../components/MyPopularCourses';
+import {
+  FaFacebook,
+  FaLinkedin,
+  FaTwitter,
+  FaGraduationCap,
+} from "react-icons/fa";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
     <footer className="bg-base-200 p-10 text-base-content">
       <div className="footer grid grid-cols-1 md:grid-cols-3 gap-8">
-
         {/* Column 1: Logo & Slogan */}
         <div>
-          <h2 className="text-2xl font-bold text-primary flex items-center gap-2">
-            <FaGraduationCap className="text-3xl text-primary" /> Academix
+          <h2 className="text-2xl font-bold text-gray-700 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-primary flex items-center gap-2">
+              <FaGraduationCap className="text-3xl" />
+              Academix
+            </h2>
           </h2>
-          <p className="mt-2">Empowering Learning, Everywhere</p>
+          <p className="mt-2 text-gray-600">Empowering Learning, Everywhere</p>
         </div>
 
         {/* Column 2: Navigation Links */}
         <div>
-          <span className="footer-title">Explore</span>
-          <Link to="/about" className="link link-hover">About Us</Link>
-          <Link to="/courses" className="link link-hover">Courses</Link>
-          <Link to="/addCourse" className="link link-hover">Add Course</Link>
-          <Link to="/myPopularCourse" className="link link-hover">My Popular Course</Link>
+          <span className="footer-title text-gray-700">Explore</span>
+          <Link
+            to="/about"
+            className="link link-hover text-gray-600 hover:text-primary"
+          >
+            About Us
+          </Link>
+          <Link
+            to="/courses"
+            className="link link-hover text-gray-600 hover:text-primary"
+          >
+            Courses
+          </Link>
+          <Link
+            to="/addCourse"
+            className="link link-hover text-gray-600 hover:text-primary"
+          >
+            Add Course
+          </Link>
+          <Link
+            to="/myPopularCourse"
+            className="link link-hover text-gray-600 hover:text-primary"
+          >
+            My Popular Course
+          </Link>
         </div>
+
         {/* Column 3: Support + Social Icons */}
         <div>
-          <span className="footer-title">Support</span>
-          <Link to="/my-enrollments" className="link link-hover">My Enrollments</Link>
-          <Link to="/contactUs" className="link link-hover">Contact Us</Link>
-          <Link to="/faq" className="link link-hover">FAQ</Link>
+          <span className="footer-title text-gray-700">Support</span>
+          <Link
+            to="/my-enrollments"
+            className="link link-hover text-gray-600 hover:text-primary"
+          >
+            My Enrollments
+          </Link>
+          <Link
+            to="/contactUs"
+            className="link link-hover text-gray-600 hover:text-primary"
+          >
+            Contact Us
+          </Link>
+          <Link
+            to="/faq"
+            className="link link-hover text-gray-600 hover:text-primary"
+          >
+            FAQ
+          </Link>
 
           <div className="flex gap-4 mt-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <FaFacebook className="text-xl hover:text-blue-600" />
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className="text-xl text-gray-600 hover:text-primary" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <FaTwitter className="text-xl hover:text-sky-500" />
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter className="text-xl text-gray-600 hover:text-primary" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin className="text-xl hover:text-blue-700" />
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className="text-xl text-gray-600 hover:text-primary" />
             </a>
           </div>
         </div>
-
       </div>
     </footer>
   );

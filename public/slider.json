@@ -3,18 +3,18 @@
     "title": "Skills that drive you forward",
     "description": "Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.",
     "button": "Plan for individuals",
-    "image": "/images/image1.png"
+    "image": "/images/image1.jpg"
   },
   {
     "title": "Empower your team",
     "description": "Upskill your team with curated courses. Drive innovation and success in your organization.",
     "button": "Plan for teams",
-    "image": "/images/image2.png"
+    "image": "/images/image2.jpg"
   },
   {
     "title": "Learn without limits",
     "description": "Access a world of knowledge. Learn anytime, anywhere, at your pace.",
     "button": "Explore learning paths",
-    "image": "/images/image3.png"
+    "image": "/images/image3.jpg"
   }
 ]

@@ -39,6 +39,7 @@ const BannerSlider = () => {
               <img
                 src={slide.image}
                 alt="Slide background"
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0  bg-opacity-40 z-10" />
